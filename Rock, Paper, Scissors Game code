@@ -1,0 +1,43 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        String[] choices = {"Rock", "Paper", "Scissors"};
+        String userChoice, computerChoice;
+        
+        while (true) {
+            System.out.println("Enter Rock, Paper, or Scissors (or 'exit' to quit):");
+            userChoice = scanner.nextLine();
+            
+            if (userChoice.equalsIgnoreCase("exit")) {
+                System.out.println("Game Over!");
+                break;
+            }
+
+            if (!userChoice.equalsIgnoreCase("Rock") && 
+                !userChoice.equalsIgnoreCase("Paper") && 
+                !userChoice.equalsIgnoreCase("Scissors")) {
+                System.out.println("Invalid choice, try again.");
+                continue;
+            }
+
+            computerChoice = choices[random.nextInt(3)];
+            System.out.println("Computer chose: " + computerChoice);
+
+            if (userChoice.equalsIgnoreCase(computerChoice)) {
+                System.out.println("It's a tie!");
+            } else if (userChoice.equalsIgnoreCase("Rock") && computerChoice.equals("Scissors") ||
+                       userChoice.equalsIgnoreCase("Paper") && computerChoice.equals("Rock") ||
+                       userChoice.equalsIgnoreCase("Scissors") && computerChoice.equals("Paper")) {
+                System.out.println("You win!");
+            } else {
+                System.out.println("You lose!");
+            }
+        }
+
+        scanner.close();
+    }
+}
